@@ -1,0 +1,89 @@
+var elements = document.getElementsByTagName('ytd-rich-grid-media')
+      items = [];
+      for(var i=0; i<elements.length; i++) {
+        try{
+            var item = elements[i].data;
+            items.push({
+            'videoId': item.videoId,
+            'title': item.title.runs[0].text,
+            'duration': item.lengthText.simpleText,
+            'publishedTime': item.publishedTimeText.simpleText,
+            'viewCount': item.shortViewCountText.simpleText,
+            'thumbnail': item.thumbnail.thumbnails[0].url,
+            'channel': item.shortBylineText.runs[0].text,
+            'channelThumbnail': item.channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer.thumbnail.thumbnails[0].url,
+            });
+        }
+        catch(err) {}      
+      }
+      items;
+
+
+var elements = document.getElementsByTagName('ytd-video-renderer')
+        items = [];
+        for(var i=0; i<elements.length; i++) {
+            var item = elements[i].data;
+            try{
+                var myItem = {
+                    'videoId': item.videoId,
+                    'title': item.title.runs[0].text,
+                    'duration': item.lengthText.simpleText,
+                    'publishedTime': item.publishedTimeText.simpleText,
+                    'viewCount': item.shortViewCountText.simpleText,
+                    'thumbnail': item.thumbnail.thumbnails[0].url,
+                    'channel': item.shortBylineText.runs[0].text,
+                    'channelThumbnail': item.channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer.thumbnail.thumbnails[0].url,
+                }
+                items.push(myItem);
+            } catch (err) {}
+        }     
+        items;
+
+
+----------------
+
+
+
+        async function doRequest() {
+
+        let url = 'https://9convert.com/api/ajaxSearch/index';
+        let data = {'query': 'https://www.youtube.com/watch?v=NZJmLBap_0c&ab_channel=NB3Ho%C3%A0iB%E1%BA%A3oOfficial', 'vt': 'home'};
+
+        let res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': 'https://9convert.com',
+'Access-Control-Allow-Methods': 'GET, POST, PUT',
+'Access-Control-Allow-Headers': 'Content-Type',
+                'Accept': '*/*',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Accept-Language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
+                'Connection': 'keep-alive',
+                'Content-Length': '126',
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'Host': '9convert.com',
+                'Origin': 'https://9convert.com',
+                'Referer': 'https://9convert.com/',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+
+            // let text = await res.text();
+            // return text;
+
+            let ret = await res.json();
+            return JSON.parse(ret.data);
+
+        } else {
+            return `HTTP error: ${res.status}`;
+        }
+    }
+
+    doRequest().then(data => {
+        console.log(data);
+    });
+
+    https://rr8---sn-8qj-q5qes.googlevideo.com/videoplayback?expire=1683643607&ei=dwhaZO2ICJjM2roP5Ly4uAE&ip=14.241.231.139&id=o-AJ1N4xK3t5fghCGfHmst6X4TPxLfDEjMoTV4OhipQwV8&itag=136&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C271%2C278%2C394%2C395%2C396%2C397%2C398%2C399%2C400&source=youtube&requiressl=yes&mh=bd&mm=31%2C29&mn=sn-8qj-q5qes%2Csn-npoldn7y&ms=au%2Crdu&mv=m&mvi=8&pl=23&initcwndbps=1342500&vprv=1&svpuc=1&mime=video%2Fmp4&ns=4erUhHOsB9An8SfsGf_1apEN&gir=yes&clen=22571147&dur=258.000&lmt=1683414520154414&mt=1683621687&fvip=4&keepalive=yes&fexp=24007246&c=WEB&txp=453C434&n=uEC0VijpQ2Fak4dCnss&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIge1BnRJfC08ek0fqaZ0vvExnCxAznGBsAU6emn5kOGd8CIQDmaolicOFvA_m04b_cj-l6Y8zo5UKO7moOIsLyMLtjWw%3D%3D&ratebypass=yes&sig=AOq0QJ8wRQIhAKPWTeR2Dfzy4x7Ha_gTOmCAqQ6z2GtIApJpAFonS-5QAiB28Q32HA3Ma1yLmdalAZs9uCzvW93yyfMaC3Cz9yZoJw%3D%3D
+    
